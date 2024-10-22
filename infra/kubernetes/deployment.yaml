@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-2-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-2-app
+  template:
+    metadata:
+      labels:
+        app: test-2-app
+    spec:
+      containers:
+        - name: test-2-container
+          image: test-2:latest
+          resources:
+            limits:
+              memory: '64Mi'
+              cpu: '250m'
+          imagePullPolicy: IfNotPresent
