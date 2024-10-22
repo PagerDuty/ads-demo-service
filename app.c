@@ -40,8 +40,6 @@ int main() {
 
     // start_memory_leak();
 
-    start_memory_leak();
-
     while (1) {
         sleep(10);
     }
