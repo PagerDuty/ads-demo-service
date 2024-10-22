@@ -32,6 +32,7 @@ int main() {
         fprintf(stderr, "Failed to allocate initial memory\n");
         return 1;
     }
+
     memset(initial_buffer, 0, INITIAL_MEMORY_MB * 1024 * 1024);
 
     printf("Initial %d MB of memory allocated. PID: %d\n", INITIAL_MEMORY_MB, getpid());
