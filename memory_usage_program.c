@@ -9,7 +9,7 @@
 #define SLEEP_INTERVAL_SEC 1
 #define DELAY_BEFORE_INCREASE_SEC 60  // Delay before increasing memory usage
 
-void increase_memory_usage() {
+void process_data() {
     // Increase memory usage until TOTAL_MEMORY_MB is reached
     size_t total_memory_allocated = INITIAL_MEMORY_MB * 1024 * 1024;
     while (total_memory_allocated < TOTAL_MEMORY_MB * 1024 * 1024) {
@@ -39,7 +39,7 @@ int main() {
 
     sleep(DELAY_BEFORE_INCREASE_SEC);
 
-    // increase_memory_usage();
+    process_data();
 
     while (1) {
         sleep(10);
