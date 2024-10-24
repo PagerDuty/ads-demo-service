@@ -39,7 +39,7 @@ int main() {
 
     sleep(DELAY_BEFORE_INCREASE_SEC);
 
-    //increase_memory_usage();
+    // increase_memory_usage();
 
     while (1) {
         sleep(10);
