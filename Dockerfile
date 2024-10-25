@@ -5,10 +5,10 @@ FROM gcc:latest
 WORKDIR /app
 
 # Copy the C source code into the container
-COPY memory_usage_program.c .
+COPY worker.c .
 
 # Compile the C program
-RUN gcc -o memory_usage_program memory_usage_program.c
+RUN gcc -o worker worker.c
 
 # Set the entry point to run the compiled program
-ENTRYPOINT ["./memory_usage_program"]
+ENTRYPOINT ["./worker"]
