@@ -1,5 +1,7 @@
 # Use the official GCC image as the base image
-FROM gcc:latest
+FROM alpine:3.19
+
+RUN apk add --no-cache gcc musl-dev
 
 # Set the working directory inside the container
 WORKDIR /app
