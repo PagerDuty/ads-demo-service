@@ -11,9 +11,13 @@ void process_work(char *payload) {
 
     printf("Processing work...\n");
     for (size_t i = 0; i < size; i += 4096) {
-        payload[i] = 0;  
+        process_work_item(payload[i]); 
     }
     sleep(1);
+}
+
+void process_work_item(char *work_item) {
+    work_item = 0;
 }
 
 
