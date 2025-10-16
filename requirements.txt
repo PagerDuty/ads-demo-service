@@ -1,0 +1,3 @@
+# Python dependencies for ads-demo-service
+# Note: list_incidents.py uses only Python standard library (urllib, json, os, sys)
+# No additional dependencies are required for basic functionality.
