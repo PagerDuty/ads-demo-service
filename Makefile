@@ -11,4 +11,7 @@ delete:
 	
 redeploy:
 	kubectl delete -f infra/kubernetes/deployment.yaml
-	kubectl apply -f infra/kubernetes/deployment.yaml 
+	kubectl apply -f infra/kubernetes/deployment.yaml
+
+oncall:
+	./check_oncall.sh 
