@@ -13,6 +13,10 @@ This document describes how to look up and respond to incidents for the ads-demo
    - Python 3.6+ (for Python analyzer)
    - `git` (for correlating with commits)
 
+3. **Quick Test**: Run `./test-incident-tools.sh` to verify all tools are present and configured correctly
+
+> 💡 **Tip**: See [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) for detailed examples with sample output
+
 ## Looking Up Incidents
 
 ### Method 1: Using the Bash Script

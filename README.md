@@ -26,9 +26,13 @@ This repository includes tools for looking up and analyzing PagerDuty incidents 
 
 - **incident-lookup.sh**: Quick incident lookup using PagerDuty API
 - **incident-analyzer.py**: Detailed incident analysis with git commit correlation
+- **test-incident-tools.sh**: Test script to verify tools are working
 - **INCIDENT_RESPONSE.md**: Complete incident response guide
+- **EXAMPLE_USAGE.md**: Examples with sample outputs
 
 See [INCIDENT_RESPONSE.md](INCIDENT_RESPONSE.md) for detailed usage instructions and incident response workflows.
+
+See [EXAMPLE_USAGE.md](EXAMPLE_USAGE.md) for example commands and outputs.
 
 ## Known Issues
 
