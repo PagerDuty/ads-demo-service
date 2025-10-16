@@ -25,6 +25,7 @@ void controller() {
     while (1) {
         char *buffer = malloc(PAYLOAD_MB * 1024 * 1024 * sizeof(char));
         process_work(buffer);
+        free(buffer);
     }
 }
 
