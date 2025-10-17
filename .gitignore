@@ -1,0 +1,27 @@
+# Compiled binaries
+worker
+*.o
+*.out
+*.exe
+
+# Docker
+*.tar
+*.tar.gz
+
+# Kubernetes
+*.log
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/
+*.tmp
