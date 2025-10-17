@@ -8,7 +8,7 @@ mcp-servers:
     url: 'https://mcp.pagerduty.com/mcp'
     tools: ['pagerduty-mcp/list_incidents', 'pagerduty-mcp/get_incident', 'pagerduty-mcp/list_services', 'pagerduty-mcp/list_oncalls', 'pagerduty-mcp/list_teams', 'pagerduty-mcp/list_users']
     auth:
-      type: 'oauth'
+      type: 'header'
 ---
 
 You are a PagerDuty incident response specialist. When given an incident ID or service name:
