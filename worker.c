@@ -16,7 +16,8 @@ void process_work(char *payload) {
     sleep(1);
 }
 
-void process_work_item(char *work_item) {
+void process_work_item(char work_item) {
+    // Process individual work item
     work_item = 0;
 }
 
@@ -24,7 +25,12 @@ void process_work_item(char *work_item) {
 void controller() {
     while (1) {
         char *buffer = malloc(PAYLOAD_MB * 1024 * 1024 * sizeof(char));
+        if (buffer == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            break;
+        }
         process_work(buffer);
+        free(buffer);
     }
 }
 
