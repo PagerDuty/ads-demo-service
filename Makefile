@@ -11,4 +11,10 @@ delete:
 	
 redeploy:
 	kubectl delete -f infra/kubernetes/deployment.yaml
-	kubectl apply -f infra/kubernetes/deployment.yaml 
+	kubectl apply -f infra/kubernetes/deployment.yaml
+
+install-deps:
+	pip install -r requirements.txt
+
+list-incidents:
+	python3 list_incidents.py 
