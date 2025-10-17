@@ -1,0 +1,112 @@
+# PagerDuty MCP Configuration for ads-demo-service
+# This file documents the expected PagerDuty integration configuration
+
+service:
+  name: "ads-demo-service"
+  description: "Demo service to test Automated Diagnostic System (ADS)"
+  type: "worker"
+  language: "C"
+  
+integration:
+  type: "kubernetes"
+  monitoring:
+    - type: "pod-restarts"
+      threshold: 3
+      window: "5m"
+      severity: "high"
+    - type: "oom-killed"
+      severity: "high"
+      immediate: true
+    - type: "memory-usage"
+      threshold: "90%"
+      warning: true
+
+alerts:
+  - name: "Worker Pod OOMKilled"
+    description: "Worker pod exceeded memory limit and was killed"
+    severity: "sev-2"
+    conditions:
+      - event: "OOMKilled"
+        service: "ads-demo-service"
+    actions:
+      - trigger_incident
+      - notify_oncall
+      - analyze_recent_changes
+
+  - name: "Worker Pod CrashLoopBackOff"
+    description: "Worker pod is in CrashLoopBackOff state"
+    severity: "sev-2"
+    conditions:
+      - status: "CrashLoopBackOff"
+        duration: ">2m"
+    actions:
+      - trigger_incident
+      - escalate_if_unresolved: "15m"
+
+  - name: "High Memory Usage Warning"
+    description: "Worker pod memory usage approaching limit"
+    severity: "sev-3"
+    conditions:
+      - memory_usage: ">58Mi"  # 90% of 64Mi limit
+    actions:
+      - notify_oncall
+      - monitor
+
+oncall:
+  escalation_policy: "default"
+  schedule: "24x7"
+  notification_channels:
+    - email
+    - sms
+    - push
+
+mcp_analysis:
+  enabled: true
+  capabilities:
+    - incident_retrieval
+    - oncall_identification
+    - code_change_analysis
+    - root_cause_analysis
+    - remediation_suggestions
+  
+  analysis_scope:
+    lookback_period: "24h"
+    files_to_analyze:
+      - "worker.c"
+      - "infra/kubernetes/*.yaml"
+      - "Dockerfile"
+      - "Makefile"
+    
+  automated_actions:
+    - detect_memory_leaks: true
+    - analyze_resource_limits: true
+    - suggest_rollback: true
+    - create_fix_pr: false  # Requires manual approval
+
+incident_response:
+  auto_acknowledge: false
+  sla:
+    acknowledge: "15m"
+    resolve: "4h"
+  
+  runbook_url: "https://github.com/PagerDuty/ads-demo-service/blob/main/RUNBOOK.md"
+  documentation_url: "https://github.com/PagerDuty/ads-demo-service/blob/main/PAGERDUTY_MCP.md"
+
+remediation:
+  known_issues:
+    - issue: "memory_leak"
+      file: "worker.c"
+      function: "controller()"
+      line: 26
+      fix_type: "add_free_call"
+      confidence: "high"
+      fix_template: |
+        Add `free(buffer);` after line 27 in controller() function
+        This will prevent memory accumulation and OOMKilled events.
+
+tags:
+  - "demo"
+  - "worker-service"
+  - "memory-leak"
+  - "kubernetes"
+  - "automated-diagnostics"
