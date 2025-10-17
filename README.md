@@ -4,7 +4,7 @@ Testing
 
 ## PagerDuty MCP Integration
 
-Yes, this repository has access to PagerDuty MCP (Model Context Protocol) capabilities through a custom agent.
+This repository provides access to PagerDuty MCP (Model Context Protocol) capabilities through a custom agent.
 
 ### Available Capabilities
 
