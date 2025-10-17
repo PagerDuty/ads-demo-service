@@ -16,15 +16,21 @@ void process_work(char *payload) {
     sleep(1);
 }
 
-void process_work_item(char *work_item) {
-    work_item = 0;
+void process_work_item(char work_item) {
+    // Process single character
+    (void)work_item;
 }
 
 
 void controller() {
     while (1) {
         char *buffer = malloc(PAYLOAD_MB * 1024 * 1024 * sizeof(char));
+        if (buffer == NULL) {
+            printf("Memory allocation failed\n");
+            break;
+        }
         process_work(buffer);
+        free(buffer);
     }
 }
 
